@@ -2,7 +2,7 @@ import random
 import string
 from itertools import product
 
-USERNAME_PREFIX = '0000'
+USERNAME_PREFIX = ''
 USERNAME_LENGTH = 10
 CHARSET = string.octdigits
 

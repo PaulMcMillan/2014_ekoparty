@@ -1,0 +1,16 @@
+no-hosts
+no-daemon
+no-resolv
+log-queries
+bind-interfaces
+dhcp-authoritative
+no-ping
+# set TTL for authoritative answers
+auth-ttl=17280
+# return our own IP address to close the connection quickly
+host-record=www.ecdinterface.philips.com,208.67.222.222
+
+interface=eth4
+dhcp-range=169.254.0.0,169.254.255.255,static,255.255.0.0,infinite
+# set this particular device to a static address
+dhcp-host=00:17:88:0a:18:9e,hue,169.254.159.24,infinite

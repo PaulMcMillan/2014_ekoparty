@@ -1,4 +1,6 @@
 clean:
 	mkdir -p data
-	rm *.pyc
+	mkdir -p tmp
 	rm -rf data/*
+	rm -rf tmp/*
+	rm -rf *.pyc
