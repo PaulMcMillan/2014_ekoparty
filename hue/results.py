@@ -5,6 +5,7 @@ from itertools import chain
 from scipy import signal
 import os
 
+
 class QueryResponse(object):
     """Class to make it easier to work with parsed data. Works with
     everything natively in nanoseconds.

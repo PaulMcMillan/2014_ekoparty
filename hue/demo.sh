@@ -1,4 +1,4 @@
 sudo make clean
-./reset_users.py
-./capture.sh &
-./collect_data.py
+sudo ./reset_users.py
+sudo ./capture.sh &
+sudo ./collect_data.py

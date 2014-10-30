@@ -19,4 +19,8 @@ sudo sh -c "echo 1 > /proc/sys/net/ipv4/tcp_low_latency"
 #sudo tcpdump -i eth4 -j adapter --time-stamp-precision=nanoseconds -G 30 -w "data/%Y-%m-%d-%H-%M-%S.pcap" -z `pwd`/parse_pcap.py
 
 # split but don't parse
-sudo tcpdump -i eth4 -j adapter --time-stamp-precision=nanoseconds -G 30 -w "%Y-%m-%d-%H-%M-%S.pcap" -z "mv -t data"
+sudo tcpdump -i eth4 -j adapter --time-stamp-precision=nanoseconds -G 15 -w `pwd`/"tmp/%Y-%m-%d-%H-%M-%S.pcap" -z `pwd`/mv.sh
+
+# this will occasionally produce "cannot stat blah" errors. This is
+# ok, we run a clean when we switch guesses and don't want the old
+# data contaminating the new.

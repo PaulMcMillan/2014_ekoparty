@@ -14,14 +14,18 @@ import results
 
 
 def keep_point(point):
-    if (point.total_response() < 1.5501e7 and
-        point.total_response() > 1.54924e7):
+    # return True
+    # if (point.total_response() < 1.55050e7 and
+    #     point.total_response() > 1.54924e7):
+    #     return True
+    if (point.total() < 1.5853e7 and
+        point.total() > 1.5835e7):
         return True
     return False
 
 
 def choose_points(qr_list):
-    return [d.total_response() for d in qr_list if keep_point(d)]
+    return [d.total() for d in qr_list if keep_point(d)]
 
 
 def analyze_data(data, p_threshold=0.05):
