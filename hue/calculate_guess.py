@@ -70,6 +70,9 @@ if __name__=='__main__':
     data = results.read_data(bucket=r'^/api/(\w{%d})\w+/config$' % prefix_len)
     #trim_data(data)
     res = analyze_data(data, p_threshold=0.1)
+    print "Counts:"
+    for k, v in data.items():
+        print k, len(choose_points(v))
     print "Results:"
     for k, v in sorted(res.items()):
         print "{}: {}".format(k, v)
