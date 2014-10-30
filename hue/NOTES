@@ -1,0 +1,9 @@
+Things to try:
+
+What happens if we don't send a syn?
+- it does proper connection tracking
+What happens if we don't close the connection?
+- it gets mad and sents a RST,ACK
+
+Generally: we should try using raw packets
+- Totally a waste of time here
