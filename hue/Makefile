@@ -4,3 +4,4 @@ clean:
 	rm -rf data/*
 	rm -rf tmp/*
 	rm -rf *.pyc
+	rm -f username

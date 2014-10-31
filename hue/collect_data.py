@@ -103,11 +103,11 @@ while True:
         if count % 100 == 0:
             now = time.time()
             elapsed = now - start_time
-            print "{} {:2f} {:2f}".format(
+            print "{} {:.2f} {:.2f}".format(
                 count, elapsed, 100 / (now - interval))
             interval = now
             if count % 3000 == 0:
-                time.sleep(0.1) # let any existing connections finish
+                time.sleep(0.05) # let any existing connections finish
                 print "Current guess: ", current_guess
                 print "Parsing data..."
                 subprocess.call(
@@ -123,5 +123,5 @@ while True:
                     print "Guess time: ", time.time() - guess_time
                     subprocess.call('make clean', shell=True)  # dump old data
                 print "Collecting data:"
-        time.sleep(0.005)
+#        time.sleep(0.005)
     random.shuffle(username_generators)

@@ -8,7 +8,8 @@ import requests
 import users
 import discover
 
-hue_url = discover.find_hue()
+hue_url = 'http://169.254.159.24/'
+#hue_url = discover.find_hue()
 
 request_dict = {
     "devicetype": "timinguser",
