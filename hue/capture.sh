@@ -2,7 +2,7 @@
 # polling for the internet.
 echo "starting dnsmasq"
 sudo pkill -9 dnsmasq
-sudo timeout 10 dnsmasq -C dnsmasq_config
+sudo timeout 30 dnsmasq -C dnsmasq_config
 echo "clearing postrouting table and blocking outgoing acks"
 sudo iptables -t mangle -F OUTPUT
 sudo iptables -t mangle -A OUTPUT -o eth4 -p tcp --tcp-flags ALL ACK -j DROP

@@ -74,7 +74,7 @@ def next_guess(data, p_threshold=0.1, analysis_threshold=1500):
             return next_guess(data, p_threshold / 10)
     if values[-1] >= 6:
         if (values[-1] - values[-2]) >= 2:
-            if sum(values[:-1]) < 13: # ?
+            if sum(values[:-1]) < 12: # sometimes there's low level dissent.
                 return max(res, key=res.get)
 
 
@@ -84,7 +84,7 @@ def trim_data(data):
 
 
 if __name__=='__main__':
-    prefix_len = len(users.USERNAME_PREFIX) + 2
+    prefix_len = len(users.USERNAME_PREFIX) + 1
     data = results.read_data(bucket=r'^/api/(\w{%d})\w+/config$' % prefix_len)
     #trim_data(data)
 #    res = analyze_data(data, p_threshold=0.1)

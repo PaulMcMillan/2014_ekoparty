@@ -30,6 +30,5 @@ def check_data(data):
     plt.legend()
     plt.show()
 
-
-data = results.read_data(bucket=r'^/api/(\w)\w+/config$')
+data = results.read_data(bucket=r'^/api/(\w{1})\w+/config$')
 check_data(data)
